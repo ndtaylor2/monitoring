@@ -1,0 +1,12 @@
+{
+    "name": "Force Server",
+    "description": "Simple development server for Force.com. CORS Proxy for Salesforce REST calls + Web Server to load application assets.",
+    "repository": "https://github.com/ccoenraets/force-server",
+    "logo": "https://developer.salesforce.com/resource/images/platform-force-cloud.png",
+    "keywords": ["cors", "nodejs", "proxy", "salesforce", "rest", "force.com"],
+    "env": {
+        "ROOT": ".",
+        "PORT": "80",
+        "Debug": "False"
+    }
+}

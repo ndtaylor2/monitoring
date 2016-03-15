@@ -1,0 +1,89 @@
+{
+  "_args": [
+    [
+      "force-server",
+      ""
+    ]
+  ],
+  "_from": "force-server@latest",
+  "_id": "force-server@0.0.8",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/force-server",
+  "_nodeVersion": "4.0.0",
+  "_npmUser": {
+    "email": "ccoenraets@gmail.com",
+    "name": "ccoenraets"
+  },
+  "_npmVersion": "2.14.2",
+  "_phantomChildren": {},
+  "_requested": {
+    "name": "force-server",
+    "raw": "force-server",
+    "rawSpec": "",
+    "scope": null,
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/force-server/-/force-server-0.0.8.tgz",
+  "_shasum": "2200bf87b9573c9b4959447ae7222951f2997bca",
+  "_shrinkwrap": null,
+  "_spec": "force-server",
+  "_where": "",
+  "author": {
+    "email": "ccoenraets@gmail.com",
+    "name": "Christophe Coenraets",
+    "url": "http://coenraets.org/"
+  },
+  "bin": {
+    "force-server": "./bin/force-server.js"
+  },
+  "bugs": {
+    "url": "https://github.com/ccoenraets/force-server/issues"
+  },
+  "dependencies": {
+    "body-parser": "~1.9.0",
+    "express": "~4.9.8",
+    "minimist": "^1.1.0",
+    "open": "0.0.5",
+    "request": "~2.45.0"
+  },
+  "description": "Development server for Force.com",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "2200bf87b9573c9b4959447ae7222951f2997bca",
+    "tarball": "http://registry.npmjs.org/force-server/-/force-server-0.0.8.tgz"
+  },
+  "gitHead": "d1c5131016fccb09ed3e407dcfc0a0de8316a144",
+  "homepage": "https://github.com/ccoenraets/force-server",
+  "keywords": [
+    "cors",
+    "force.com",
+    "forcejs",
+    "proxy",
+    "salesforce",
+    "webserver"
+  ],
+  "license": "MIT",
+  "maintainers": [
+    {
+      "name": "ccoenraets",
+      "email": "ccoenraets@gmail.com"
+    }
+  ],
+  "name": "force-server",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ccoenraets/force-server.git"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "version": "0.0.8"
+}
