@@ -38,7 +38,7 @@ function showDate() {
 function getObjectsChanged(object_name,name_field) {
     var date = querydate;
     
-    var query = 'select Id,'+name_field+', LastModifiedDate from '+object_name+' where LastModifiedDate > '+date.format()+' limit 10';
+    var query = 'select Id,'+name_field+', LastModifiedDate from '+object_name+' where LastModifiedDate > '+date.format()+' limit 200';
     var soql = document.getElementById("soql");
     soql.innerText = query;
     force.query(query, function (response) {
@@ -68,12 +68,12 @@ function getObjectsChanged(object_name,name_field) {
 }
 
 function afterLogin() {
-    querydate=moment().subtract(10,'m');
+    querydate=moment().subtract(5,'m');
     showToken();
     showDate();
     getObjectsChanged('Contact','Name');
     getObjectsChanged('Case','CaseNumber');
-    setTimeout(afterLogin,10000); // Refresh after 1 minute;
+    setTimeout(afterLogin,20000); // Refresh after 1 minute;
 }
 
 force.login(afterLogin);
