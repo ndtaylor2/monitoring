@@ -1,5 +1,6 @@
 var querydate=moment();
-
+var refreshSeconds = 60;
+var intervalMinutes = 5; // 
 document.getElementById("queryBtn").addEventListener("click", function () {
     var soql = document.getElementById("soql");
     var result = document.getElementById("result");
@@ -70,12 +71,13 @@ function getObjectsChanged(object_name,name_field) {
 }
 
 function afterLogin() {
-    querydate=moment().subtract(5,'m');
+    querydate=moment().subtract(intervalMinutes,'m');
     showToken();
     showDate();
     getObjectsChanged('Contact','Name');
     getObjectsChanged('Case','CaseNumber');
-    setTimeout(afterLogin,60000); // Refresh after 1 minute;
+    getObjectsChanged('ServiceContract','ContractNumber');
+    setTimeout(afterLogin,refreshSeconds*1000); // Refresh after 1 minute;
 }
 
 if (window.location.hostname=='salty-gorge-66919.herokuapp.com') {
