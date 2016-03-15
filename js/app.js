@@ -78,5 +78,9 @@ function afterLogin() {
     setTimeout(afterLogin,60000); // Refresh after 1 minute;
 }
 
+if (window.location.hostname=='salty-gorge-66919.herokuapp.com') {
+    force.init({appId: '3MVG9KI2HHAq33RzNHP6WHwVK23pR4J56AZuDEZQ9iAIIyAyKjAcom.Lg48fFwojC1YYZ9s00Dw4Ava.3leLi'});
+    // This uses a different OAuth app that is setup for salty-gorge-66919.herokuapp.com    
+}
 force.login(afterLogin);
 
