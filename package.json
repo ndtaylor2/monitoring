@@ -38,9 +38,6 @@
     "name": "Christophe Coenraets",
     "url": "http://coenraets.org/"
   },
-  "bin": {
-    "force-server": "./bin/force-server.js"
-  },
   "bugs": {
     "url": "https://github.com/ccoenraets/force-server/issues"
   },
@@ -77,7 +74,7 @@
   ],
   "name": "force-server",
   "optionalDependencies": {},
-  "readme": "ERROR: No README data found!",
+  "readme": "README.md",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ccoenraets/force-server.git"
