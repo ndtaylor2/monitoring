@@ -38,7 +38,8 @@ function showDate() {
 function getObjectsChanged(object_name,name_field) {
     var date = querydate;
     
-    var query = 'select Id,'+name_field+', LastModifiedBy.Name, LastModifiedDate from '+object_name+' where LastModifiedDate > '+date.format()+' ORDER BY LastModifiedDate DESC limit 200';
+    var query = 'select Id,'+name_field+', LastModifiedBy.Name, LastModifiedDate from '+
+                object_name+' where LastModifiedDate > '+date.format()+' ORDER BY LastModifiedDate DESC limit 200';
     var soql = document.getElementById("soql");
     soql.innerText = query;
     force.query(query, function (response) {
