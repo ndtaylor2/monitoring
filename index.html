@@ -5,13 +5,12 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Xcellent Care Status</title>
+    <title>XC to SFSTAGE Status</title>
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/custom.css" rel="stylesheet">
 </head>
 
 <body>
-
     <div class="navbar navbar-default navbar-static-top" role="navigation">
         <div class="container">
             <div class="navbar-header">
@@ -21,16 +20,17 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Service Contract Data Flow Status</a>
+                <a class="navbar-brand" href="#">Data Flow Status</a>
             </div>
         </div>
     </div>
-
     <div class="container">
         <ul class="nav nav-pills">
+            <li class="active"><a data-toggle="pill" href="#contracts">Service Contract</a></li>
+            <li><a data-toggle="pill" href="#role">Service Role</a></li>
         </ul>
             <div class="tab-content">
-                <div id="summary" class="tab-pane fade in active">
+                <div id="contracts" class="tab-pane fade in active">
                 <div class="container">
                     <div class="row vmargin">
                         <div class="col-lg-12">
@@ -52,6 +52,30 @@
                         </div>
                     </div>
                 </div>
+                </div>
+
+                <div id="role" class="tab-pane fade in active">
+                <div class="container">
+                    <div class="row vmargin">
+                        <div class="col-lg-12">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Interval Start (UTC)</th>
+                                        <th>Interval End (UTC)</th>
+                                        <th>Okay</th>
+                                        <th>Missed</th>
+                                        <th>Late</th>
+                                        <th>Latency (Seconds)</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="firebase_table_role">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -62,6 +86,7 @@
     <script src="https://cdn.firebase.com/js/client/2.2.1/firebase.js"></script>
     <script src="lib/force.js"></script>
     <script src="js/app.js"></script>
+
 <script>
 
 var messagesRef = new Firebase('https://intense-torch-3200.firebaseio.com/xcmonitoring/prod');
@@ -73,7 +98,7 @@ var intervalMinutes = 5; // 5 Minutes
 var savedrows = {};
 
 function showFirebaseHistory(snapshot) {
-    //GET DATA
+    //get data
     var stamp = snapshot.key();
     var data = snapshot.val();
     console.info(JSON.stringify(data));
@@ -82,7 +107,6 @@ function showFirebaseHistory(snapshot) {
     var startdate = moment(stamp).format('MMM-DD hh:mm');
     var enddate = moment(stamp).add(intervalMinutes,'m').format('MMM-DD hh:mm');
     var latency_rounded = data['ServiceContract_latency'].toFixed(2);
-
 
     // evaluate status
     var indicator = "?";
@@ -97,13 +121,25 @@ function showFirebaseHistory(snapshot) {
         var indicator = "bgcolor='#FF0000'> SMS Sent";
         }
 
+    // evaluate status
+    var latency_ind = "?";
+    if (latency_rounded < 5) {
+        var latency_ind = ">" + latency_rounded;
+        }
+        else if (latency_rounded => 5 && latency_rounded < 10) {
+        var latency_ind = "bgcolor='#FFFF00'>" + latency_rounded;
+        }
+        else {
+        var latency_ind = "bgcolor='#FF0000'>" + latency_rounded;
+        }
+
     var columns =
             '<td>' + startdate + '</td>' +
             '<td>' + enddate + '</td>' +
             '<td>' + data['ServiceContract_okay'] + '</td>' +
             '<td>' + data['ServiceContract_missed'] + '</td>' +
             '<td>' + data['ServiceContract_late'] + '</td>' +
-            '<td>' + latency_rounded + '</td>' +
+            '<td ' + latency_ind + '</td>' +
             '<td ' + indicator + '</td>';
 
     
@@ -129,10 +165,10 @@ function showFirebaseHistory(snapshot) {
 
 function removeFirebaseHistory(snapshot)
 {
-    //GET DATA
+    //get data
     var stamp = snapshot.key();
     var data = snapshot.val();
-    //console.info('remove - '+stamp);
+    //check if the row exists and remove
     var row = savedrows[stamp];
     if (row) {
         savedrows[stamp]=undefined;
