@@ -27,58 +27,57 @@
     <div class="container">
         <ul class="nav nav-pills">
             <li class="active"><a data-toggle="pill" href="#contracts">Service Contract</a></li>
-            <li><a data-toggle="pill" href="#role">Service Role</a></li>
+            <!-- <li><a data-toggle="pill" href="#role">Service Role</a></li> -->
         </ul>
             <div class="tab-content">
                 <div id="contracts" class="tab-pane fade in active">
-                <div class="container">
-                    <div class="row vmargin">
-                        <div class="col-lg-12">
-                            <table class="table">
-                                <thead>
-                                    <tr>
+                    <div class="container">
+                        <h2 id="ServiceContract_changed">Contracts</h2>
+                        <div class="row vmargin">
+                            <div class="col-lg-12">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
                                         <th>Interval Start (UTC)</th>
                                         <th>Interval End (UTC)</th>
                                         <th>Okay</th>
                                         <th>Missed</th>
                                         <th>Late</th>
                                         <th>Latency (Seconds)</th>
-                                        <th>Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="firebase_table">
-                                </tbody>
-                            </table>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="firebase_table_contract">
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
-                </div>
-
-                <div id="role" class="tab-pane fade in active">
-                <div class="container">
-                    <div class="row vmargin">
-                        <div class="col-lg-12">
-                            <table class="table">
-                                <thead>
-                                    <tr>
+               <!-- <div id="role" class="tab-pane fade in active">
+                    <div class="container">
+                        <h2 id="ServiceRoles_changed">Roles</h2>
+                        <div class="row vmargin">
+                            <div class="col-lg-12">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
                                         <th>Interval Start (UTC)</th>
                                         <th>Interval End (UTC)</th>
                                         <th>Okay</th>
                                         <th>Missed</th>
                                         <th>Late</th>
                                         <th>Latency (Seconds)</th>
-                                        <th>Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="firebase_table_role">
-                                </tbody>
-                            </table>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="firebase_table_role">
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
-    </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.12.0/moment.min.js"></script>
@@ -94,7 +93,7 @@ var querydate=moment();
 var querydatetext="";
 var historyStats={};
 var refreshSeconds = 300;
-var intervalMinutes = 5; // 5 Minutes 
+var intervalMinutes = 5;
 var savedrows = {};
 
 function showFirebaseHistory(snapshot) {
@@ -103,25 +102,25 @@ function showFirebaseHistory(snapshot) {
     var data = snapshot.val();
     console.info(JSON.stringify(data));
 
-    //Format Date and Latency
+    //format date and latency
     var startdate = moment(stamp).format('MMM-DD hh:mm');
     var enddate = moment(stamp).add(intervalMinutes,'m').format('MMM-DD hh:mm');
     var latency_rounded = data['ServiceContract_latency'].toFixed(2);
 
-    // evaluate status
-    var indicator = "?";
+    // evaluate status of missed messages
+    var missed_ind = "?";
     var missed = data['ServiceContract_missed'];
     if (missed == 0) {
-        var indicator = "bgcolor='#008000'>";
+        var missed_ind = ">" + missed;
         }
         else if (missed > 0 && missed < 4) {
-        var indicator = "bgcolor='#FFFF00'> SMS Sent";
+        var missed_ind = "bgcolor='#FFFF00'>" + missed;
         }
         else {
-        var indicator = "bgcolor='#FF0000'> SMS Sent";
+        var indicator = "bgcolor='#FF0000'>" +missed;
         }
 
-    // evaluate status
+    // evaluate status of latency
     var latency_ind = "?";
     if (latency_rounded < 5) {
         var latency_ind = ">" + latency_rounded;
@@ -137,31 +136,27 @@ function showFirebaseHistory(snapshot) {
             '<td>' + startdate + '</td>' +
             '<td>' + enddate + '</td>' +
             '<td>' + data['ServiceContract_okay'] + '</td>' +
-            '<td>' + data['ServiceContract_missed'] + '</td>' +
+            '<td ' + missed_ind + '</td>' +
             '<td>' + data['ServiceContract_late'] + '</td>' +
-            '<td ' + latency_ind + '</td>' +
-            '<td ' + indicator + '</td>';
+            '<td ' + latency_ind + '</td>';
 
     
     // Using JQuery to add a row to the table
     var row = savedrows[stamp];
-    //console.info('1'+"#"+stamp);
     if (!row)
     {
         var str = "<tr/>";
         row=$(str);
         row.html(columns);
-        var tblbody = $('#firebase_table');
+        var tblbody = $('#firebase_table_contract');
         tblbody.prepend(row);
         savedrows[stamp]=row;
         //console.info('2');
     } else {
         //console.info('3');
-        row.html(columns);
-        
+        row.html(columns);   
     }
-    
-}
+    }
 
 function removeFirebaseHistory(snapshot)
 {
@@ -189,7 +184,5 @@ query.on('child_removed',removeFirebaseHistory);
 
 </script>
 
-
 </body>
-
 </html>
