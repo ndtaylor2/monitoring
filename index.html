@@ -32,7 +32,7 @@
             <div class="tab-content">
                 <div id="contracts" class="tab-pane fade in active">
                     <div class="container">
-                        <div class="row vmargin">
+                        <div class="row row-centered">
                             <div class="col-lg-12">
                                 <table class="table">
                                     <thead>
@@ -85,7 +85,6 @@
 <!--    <script src="js/app.js"></script> -->
 
 <script>
-
 var messagesRef = new Firebase('https://intense-torch-3200.firebaseio.com/xcmonitoring/prod');
 var querydate=moment();
 var querydatetext="";
@@ -115,7 +114,7 @@ function showFirebaseHistory(snapshot) {
         var missed_ind = "bgcolor='#FFFF00'>" + missed;
         }
         else {
-        var indicator = "bgcolor='#FF0000'>" +missed;
+        var missed_ind = "bgcolor='#FF0000'>" + missed;
         }
 
     // evaluate status of latency
@@ -175,7 +174,7 @@ function autoShowHistory()
     setTimeout(autoShowHistory,15*1000); // Refresh after 15 secs;
 }
 
-var query = messagesRef.limitToLast(20);
+var query = messagesRef.limitToLast(100);
 query.on('child_added',showFirebaseHistory);
 query.on('child_changed',showFirebaseHistory);
 query.on('child_removed',removeFirebaseHistory);
