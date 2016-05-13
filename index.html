@@ -125,7 +125,7 @@ function showFirebaseHistory(snapshot) {
     if (latency_rounded < 5) {
         var latency_ind = ">" + latency_rounded;
         }
-        else if (latency_rounded => 5 && latency_rounded < 10) {
+        else if (latency_rounded >= 5 && latency_rounded < 10) {
         var latency_ind = "bgcolor='#FFFF00'>" + latency_rounded;
         }
         else {
