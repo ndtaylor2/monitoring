@@ -174,7 +174,7 @@ function autoShowHistory()
     setTimeout(autoShowHistory,15*1000); // Refresh after 15 secs;
 }
 
-var query = messagesRef.limitToLast(100);
+var query = messagesRef.limitToLast(300);
 query.on('child_added',showFirebaseHistory);
 query.on('child_changed',showFirebaseHistory);
 query.on('child_removed',removeFirebaseHistory);
