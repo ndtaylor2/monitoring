@@ -28,7 +28,7 @@
         <ul class="nav nav-pills">
             <li class="active"><a data-toggle="pill" href="#contracts">Service Contract</a></li>
             <li class="active"><a data-toggle="pill" href="">Service Role</a></li>
-            <li class="active"><a data-toggle="pill" href="">About</a></li>
+            <li class="active"><a data-toggle="pill" href="#about">About</a></li>
             <!-- <li><a data-toggle="pill" href="#role">Service Role</a></li> -->
         </ul>
             <div class="tab-content">
@@ -54,6 +54,7 @@
                         </div>
                     </div>
                 </div>
+                
                 <div id="about" class="tab-pane fade in active">
                     <div class="container">
                         <div class="row vmargin">
@@ -181,7 +182,7 @@ function autoShowHistory()
     setTimeout(autoShowHistory,15*1000); // Refresh after 15 secs;
 }
 
-var query = messagesRef.limitToLast(300);
+var query = messagesRef.limitToLast(30);
 query.on('child_added',showFirebaseHistory);
 query.on('child_changed',showFirebaseHistory);
 query.on('child_removed',removeFirebaseHistory);
