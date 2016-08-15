@@ -30,6 +30,28 @@
             <li><a data-toggle="pill" href="#summary">About</a></li>
         </ul>
             <div class="tab-content">
+                <div id="contracts" class="tab-pane fade in active">
+                    <div class="container">
+                        <div class="row row-centered">
+                            <div class="col-lg-12">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                        <th>Interval Start (UTC)</th>
+                                        <th>Interval End (UTC)</th>
+                                        <th>Okay</th>
+                                        <th>Missed</th>
+                                        <th>Late</th>
+                                        <th>Latency (Seconds)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="firebase_table_contract">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div id="summary" class="tab-pane fade in active">
                     <div class="container">
                         <div class="row vmargin">
@@ -50,28 +72,6 @@
                                         </tr>
                                     </thead>
                                     <tbody id="about">
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="contracts" class="tab-pane fade in active">
-                    <div class="container">
-                        <div class="row row-centered">
-                            <div class="col-lg-12">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                        <th>Interval Start (UTC)</th>
-                                        <th>Interval End (UTC)</th>
-                                        <th>Okay</th>
-                                        <th>Missed</th>
-                                        <th>Late</th>
-                                        <th>Latency (Seconds)</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="firebase_table_contract">
                                     </tbody>
                                 </table>
                             </div>
