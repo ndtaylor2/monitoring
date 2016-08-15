@@ -79,6 +79,7 @@
                     </div>
                 </div>
             </div>
+        </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.12.0/moment.min.js"></script>
@@ -177,7 +178,7 @@ function autoShowHistory()
     setTimeout(autoShowHistory,15*1000); // Refresh after 15 secs;
 }
 
-var query = messagesRef.limitToLast(10);
+var query = messagesRef.limitToLast(300);
 query.on('child_added',showFirebaseHistory);
 query.on('child_changed',showFirebaseHistory);
 query.on('child_removed',removeFirebaseHistory);
