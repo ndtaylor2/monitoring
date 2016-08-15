@@ -28,10 +28,10 @@
         <ul class="nav nav-pills">
             <li class="active"><a data-toggle="pill" href="#contracts">Service Contract</a></li>
             <li class="active"><a data-toggle="pill" href="">Service Role</a></li>
+            <li class="active"><a data-toggle="pill" href="">About</a></li>
             <!-- <li><a data-toggle="pill" href="#role">Service Role</a></li> -->
         </ul>
             <div class="tab-content">
-                <li>Definitions</li>
                 <div id="contracts" class="tab-pane fade in active">
                     <div class="container">
                         <div class="row row-centered">
@@ -54,19 +54,24 @@
                         </div>
                     </div>
                 </div>
-               <!-- <div id="role" class="tab-pane fade in active">
+                <div id="about" class="tab-pane fade in active">
                     <div class="container">
                         <div class="row vmargin">
                             <div class="col-lg-12">
+                                <li>Definitions</li>
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                        <th>Interval Start (UTC)</th>
-                                        <th>Interval End (UTC)</th>
                                         <th>Okay</th>
                                         <th>Missed</th>
                                         <th>Late</th>
                                         <th>Latency (Seconds)</th>
+                                        </tr>
+                                        <tr>
+                                        <th>A record updated in Salesforce.com has a cooresponding update in the staging database in the same 5 minute interval</th>
+                                        <th>A record updated in Salesforce.com does NOT have a cooresponding update in the staging database in the same 5 minute interval</th>
+                                        <th>A record updated in the staging database has a cooresponding update in Salesforce.com in the past 5 minute interval</th>
+                                        <th>The average time difference between the "last modified" timestamp in Salesforce.com and the "last modified" timestamp in the staging database.</th>
                                         </tr>
                                     </thead>
                                     <tbody id="firebase_table_role">
@@ -75,7 +80,7 @@
                             </div>
                         </div>
                     </div>
-                </div> -->
+                </div>
             </div>
         </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
